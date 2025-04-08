@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine's Surprise</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    body {
+        background-color: #ffebf0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: "Great Vibes", cursive;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+    .name {
+        font-size: 6rem;
+        color: #ff4d6d;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-shadow: 5px 5px 10px rgba(255, 77, 109, 0.5);
+    }
+
+    .heart {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: red;
+        clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 50% 80%, 20% 100%, 0% 35%);
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        from {
+            transform: translateY(-10vh) scale(1);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(110vh) scale(0.5);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="name">[name]</div>
+
+<script>
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        document.body.appendChild(heart);
+
+        let startPosX = Math.random() * window.innerWidth;
+        let duration = Math.random() * 3 + 2;
+        let size = Math.random() * 20 + 10;
+
+        heart.style.left = startPosX + "px";
+        heart.style.animationDuration = duration + "s";
+        heart.style.width = size + "px";
+        heart.style.height = size + "px";
+        
+        setTimeout(() => {
+            heart.remove();
+        }, duration * 1000);
+    }
+
+    setInterval(createHeart, 200);
+</script>
+
+</body>
+</html>
